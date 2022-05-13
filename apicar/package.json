@@ -1,16 +1,17 @@
 {
   "name": "apicar",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "fastify": "^3.29.0",
-    "fastify-multer": "^2.0.2"
+    "fastify": "^3.29.0"
+  },
+  "devDependencies": {
+    "prisma": "^3.14.0"
   }
 }
