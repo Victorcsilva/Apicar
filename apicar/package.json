@@ -2,6 +2,7 @@
   "name": "apicar",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "fastify": "^3.29.0"
+    "fastify": "^3.29.0",
+    "fastify-multer": "^2.0.2"
   }
 }
