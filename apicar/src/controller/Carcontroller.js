@@ -6,26 +6,30 @@ export const getAll = async function (_, reply) {
     return reply.send(car);
   } catch (error) {
     console.error(error)
-    reply.status(500).send("Não foi possível cadastrar o carro");
+    reply.status(500).send("Não foi possível Listar o carro");
   }
 };
 
 export const create = async (req, reply) => {
-  const { name,year, brand_id } = req.body;
   const img =req.file
-  try {
+  const { name,year, brand_id } = req.body;
+ console.log(name)
+ console.log(year)
+ console.log(img.path)
+ try {
     const car = await prisma.car.create({
       data: {
         name,
          year,
+         image_url:img.path,
            brand: {
-            connect: { id:parseInt(brand_id) } },
-              image_url: img.path,
-      },
+            connect: { id:+brand_id } 
+          },      
+        },
     });
-    reply.send(car);
+   reply.status(201).send(car)
   } catch (error) {
-    reply.status(500).send("error");
+    reply.status(500).send("Não foi possível cadastrar o carro");
   }
 };
 
@@ -34,6 +38,7 @@ export const update = async (req,reply) => {
       const{id} = req.params
       const { name,year, brand_id } = req.body;
       const img =req.file
+      console.log(name)
       const updatecar = await prisma.car.update({
         where: {id:+id},
         data: {
@@ -66,12 +71,8 @@ export const Delete = async (req,reply) => {
 
 export const updatesingle = async (req,reply) => {
    const {id} = req.params
-   const updatepatch = await prisma.car.update({
-     where:{id:+id}
-    })
-  
    let data = {} 
-  
+  console.log(req.body)
    if(req.body.name){
      data.name =req.body.name
    }
@@ -80,13 +81,19 @@ export const updatesingle = async (req,reply) => {
     data.year = req.body.year
   }
 
-  if (req.body.brand) {
-    data.brand = req.body.brand_id
-
+  if (req.body.brand_id) {
+    data.brand ={
+     connect: {id:+req.body.brand_id } 
+    }
+  }
   if (req.file) {
-    data.image_url = req.img.path
+    data.image_url = req.file.path
   }
   try{
+    const updatepatch = await prisma.car.update({
+    where:{id:+id},
+    data
+    })
     return reply.status(200).send(updatepatch)
   } catch (error) {
     reply.status(500).send({error:"Erro no Servidor"})
@@ -94,4 +101,3 @@ export const updatesingle = async (req,reply) => {
   }
 }
 
-}

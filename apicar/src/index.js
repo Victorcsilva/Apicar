@@ -1,9 +1,10 @@
 import Fastify from "fastify";
 import multer from "fastify-multer";
-import CarRoutes from "./apicar/routes/Carroutes.js.js";
-import BrandRoutes from "./apicar/routes/Brandroutes.js.js";
 import fastifyStatic from "fastify-static";
+import Carroutes from "./routes/Carroutes.js";
+import Brandroutes from "./routes/Brandroutes.js";
 import path from 'path';
+import helmet from "fastify-helmet";
 
 const __dirname = path.resolve();
 
@@ -17,8 +18,8 @@ fastify.register(fastifyStatic,{
   prefix:'/public/',
 });
 
-fastify.register(CarRoutes);
-fastify.register(BrandRoutes);
+fastify.register(Carroutes);
+fastify.register(Brandroutes);
 
 const start = async () => {
   try {

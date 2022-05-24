@@ -7,17 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model car {
+model Car {
   id       Int @id @default(autoincrement())
   name     String @db.VarChar(100)
   year     String @db.VarChar(4)
-  brand    brand @relation (fields: [brand_id], references: [id])
+  brand    Brand @relation (fields: [brand_id], references: [id])
   brand_id Int  
   image_url String 
 }
-model brand {
+model Brand {
   id   Int @id @default(autoincrement())
   name String @db.VarChar(100)
-  cars car []
+  cars Car []
 
 }

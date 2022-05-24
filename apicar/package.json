@@ -2,7 +2,6 @@
   "name": "apicar",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js"
@@ -14,10 +13,13 @@
     "@fastify/static": "^5.0.2",
     "@prisma/client": "^3.14.0",
     "fastify": "^3.29.0",
+    "fastify-helmet": "^7.1.0",
     "fastify-multer": "^2.0.2",
-    "nodemon": "^2.0.16"
+    "fastify-static": "^4.7.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
+    "nodemon": "^2.0.16",
     "prisma": "^3.14.0"
   }
 }
